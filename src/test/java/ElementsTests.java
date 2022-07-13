@@ -1,5 +1,7 @@
+import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.bsmch.pages.SauceLabsSalesPage;
+import net.bsmch.pages.SauceLabsSalesPageWithSelenide;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
@@ -28,5 +30,20 @@ public class ElementsTests {
         page.apiTesting().check();
         page.apiTesting().uncheck();
         page.errorReporting().uncheck();
+    }
+
+
+
+
+
+
+
+    @Test
+    void testCheckboxWithSelenide() {
+        Selenide.open("https://saucelabs.com/sales");
+
+        var page = Selenide.page(SauceLabsSalesPageWithSelenide.class);
+        page.errorReporting.check();
+        page.apiTesting.check();
     }
 }
